@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Backgr />
-    <section class="login">
+    <backgr />
+    <section class="registration">
       <nuxt-link to="/">
         <img
           src="../static/closeIcon.svg"
           alt="closeIcon"
-          class="login-close__icon"
-        />
-      </nuxt-link>
+          class="registration-close__icon"
+      /></nuxt-link>
 
-      <img src="../static/post.svg" alt="login-logo" class="login-logo" />
-      <p class="login-name">Почта России GPT</p>
-      <p class="login-hello">Добро пожаловать</p>
+      <img src="../static/post.svg" alt="registr-logo" class="registr-logo" />
+      <p class="registr-name">Почта России GPT</p>
+      <p class="registr-hello">Добро пожаловать</p>
       <div class="forms">
         <div class="forms-input">
           <span class="forms-input__label">Электронная почта</span>
@@ -32,14 +31,14 @@
             id="2"
           />
         </div>
+        <div class="forms-input">
+          <span class="forms-input__label">Как к вам обращаться</span>
+          <Input type="name" placeholder="Введите имя" name="username" id="3" />
+        </div>
       </div>
-      <nuxt-link to="/login">
-        <Button class="button" name="Войти"></Button>
-      </nuxt-link>
-
-      <p class="login-auth">
-        Нет аккаунта?
-        <nuxt-link to="/signup"><a>Зарегистрироваться</a></nuxt-link>
+      <Button class="button" name="Зарегистрироваться" />
+      <p class="registration-auth">
+        Уже есть аккаунт? <nuxt-link to="/login"><a>Войдите</a></nuxt-link>
       </p>
     </section>
   </div>
@@ -62,18 +61,17 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
 a {
   text-decoration: none;
 }
-.login {
+.registration {
   font-family: Roboto, serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   isolation: isolate;
   width: 24.17vw;
-  height: 24.79vw;
+  height: 28.54vw;
   position: relative;
   left: calc(50% - 24.17vw / 2);
   top: calc(50% - 28.54vw / 2 - 7.5vw);
@@ -82,7 +80,7 @@ a {
   margin-top: 6.35vw;
 }
 
-.login-close__icon {
+.registration-close__icon {
   position: absolute;
   top: 0.83vw;
   right: 0.83vw;
@@ -93,7 +91,7 @@ a {
   z-index: 1;
 }
 
-.login-name {
+.registr-name {
   font-weight: 600;
   font-size: 1.56vw;
   line-height: 2.08vw;
@@ -101,13 +99,13 @@ a {
   margin: 0.21vw 0 0.21vw 0;
 }
 
-.login-logo {
+.registr-logo {
   width: 4.27vw;
   height: 2.08vw;
   margin-top: 2.08vw;
 }
 
-.login-hello {
+.registr-hello {
   font-weight: 400;
   font-size: 0.83vw;
   line-height: 1.25vw;
@@ -121,21 +119,22 @@ a {
   color: #000000;
 }
 
-.login-auth {
+.registration-auth {
   font-weight: 400;
   font-size: 0.83vw;
   line-height: 1.25vw;
+  /* margin: 0 0 2.08vw 0; */
   margin: 0.5vw 0 2vw 0;
   color: #667085;
 }
 
-.login-auth a {
+.registration-auth a {
   color: #3448af !important;
   cursor: pointer;
 }
 
 @media (max-width: 1120px) {
-  .login {
+  .registration {
     overflow: scroll;
   }
 }
