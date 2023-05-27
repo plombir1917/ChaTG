@@ -21,7 +21,7 @@
           >
           <nuxt-link class="footer-link zero" to="/login">
             <img src="../static/user.svg" alt="" class="footer-img" />
-            <span class="zero footer-link-text">Выполнить вход</span>
+            <span class="zero footer-link-text">{{}}</span>
           </nuxt-link>
         </footer>
       </div>
@@ -46,7 +46,11 @@ export default {
     padding-left: 240px;
   }
 }
-
+@media (min-width: 991.98px) {
+  .sidebar {
+    padding-left: 240px;
+  }
+}
 .zero {
   background: none;
   color: none;

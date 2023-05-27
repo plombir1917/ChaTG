@@ -1,9 +1,14 @@
 <template>
-  <section>
+  <section class="chat-background">
     <span class="chat-title">Начните печатать ниже...</span>
-    <textarea type="text" class="chat" placeholder="Введите сообщение..." />
-    <button class="chat-button">Отправить</button>
-    <button></button>
+    <div class="interface">
+      <textarea
+        type="text"
+        class="interface-input"
+        placeholder="Введите сообщение..."
+      />
+      <button class="btn">Отправить</button>
+    </div>
   </section>
 </template>
 
@@ -24,7 +29,7 @@ textarea {
     margin: 0 auto;
   }
 }
-.chat {
+.interface-input {
   box-sizing: border-box;
 
   /* Auto layout */
@@ -34,7 +39,6 @@ textarea {
   align-items: flex-end;
   gap: 8px;
   padding: 10px;
-  position: absolute;
   width: 50vw;
   height: 128px;
   right: 20vw;
@@ -59,7 +63,7 @@ textarea {
   font-size: 14px;
   line-height: 20px;
   /* identical to box height, or 143% */
-
+  position: relative;
   display: flex;
   align-items: center;
   text-align: center;
@@ -75,7 +79,7 @@ textarea {
   flex-grow: 0;
 }
 .chat-title {
-  position: absolute;
+  margin-top: 48.15vh;
   width: 363px;
   height: 40px;
   left: calc(50% - 363px / 2 + 159.5px);
@@ -93,5 +97,34 @@ textarea {
   /* Primary/Gray */
 
   color: #667085;
+}
+.chat-background {
+  display: flex;
+  flex-direction: column;
+  margin-left: 320px;
+  justify-content: space-between;
+  align-items: center;
+  height: 94vh;
+}
+.btn {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 103px;
+  height: 40px;
+
+  /* Blue/Blue */
+
+  background: #3448af;
+  border-radius: 100px;
+
+  /* Inside auto layout */
+  color: #ffffff;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 </style>

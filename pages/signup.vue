@@ -15,47 +15,75 @@
       <div class="forms">
         <div class="forms-input">
           <span class="forms-input__label">Электронная почта</span>
-          <Input
+          <input
             type="email"
             placeholder="Введите вашу почту"
             name="email"
             id="1"
+            class="input"
+            v-model="form.email"
           />
         </div>
         <div class="forms-input">
           <span class="forms-input__label">Пароль</span>
-          <Input
+          <input
             type="password"
             placeholder="Введите пароль"
             name="password"
             id="2"
+            class="input"
+            v-model="form.password"
           />
         </div>
         <div class="forms-input">
           <span class="forms-input__label">Как к вам обращаться</span>
-          <Input type="name" placeholder="Введите имя" name="username" id="3" />
+          <input
+            type="name"
+            placeholder="Введите имя"
+            name="username"
+            id="3"
+            class="input"
+            v-model="form.name"
+          />
         </div>
       </div>
-      <Button class="button" name="Зарегистрироваться" />
+      <button class="button btn" @click="onSubmit">Зарегистрироваться</button>
       <p class="registration-auth">
         Уже есть аккаунт? <nuxt-link to="/login"><a>Войдите</a></nuxt-link>
       </p>
+      <b-card class="mt-3" header="Form Data Result">
+        <pre class="m-0">{{ form }}</pre>
+      </b-card>
     </section>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      form: {
+        email: '',
+        password: '',
+        name: '',
+      },
+    }
+  },
+  methods: {
+    onSubmit(event) {
+      event.preventDefault()
+      alert(JSON.stringify(this.form))
+    },
+  },
   name: 'Modal',
   components: {
     Backgr: () => import('../UI/Backgr.vue'),
-    Button: () => import('../UI/Button.vue'),
-    Input: () => import('../UI/Input.vue'),
   },
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -63,6 +91,68 @@ export default {
 }
 a {
   text-decoration: none;
+}
+span {
+  display: block;
+}
+.input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.52vw 0.83vw;
+  gap: 0.42vw;
+  width: 20vw;
+  height: 2.29vw;
+  background: #ffffff;
+  border: 0.05vw solid #d0d5dd;
+  border-radius: 0.42vw;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+  font-weight: 400;
+  font-size: 0.83vw;
+  line-height: 1.25vw;
+  margin: 0.21vw 0 0.42vw 0;
+}
+.login {
+  font-family: Roboto, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  isolation: isolate;
+  width: 24.17vw;
+  height: 24.79vw;
+  position: relative;
+  left: calc(50% - 24.17vw / 2);
+  top: calc(50% - 28.54vw / 2 - 7.5vw);
+  background: #ffffff;
+  border-radius: 1.67vw;
+  margin-top: 6.35vw;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  color: #fff;
+  width: 20vw;
+  height: 2.08vw;
+  background: #3448af;
+  border-radius: 5.21vw;
+  flex: none;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 2;
+  font-weight: 500;
+  font-size: 0.73vw;
+  line-height: 1.04vw;
+  margin: 1.25vw auto 0 auto;
+}
+.btn:hover {
+  background: #20349b;
+  color: #fff;
 }
 .registration {
   font-family: Roboto, serif;
@@ -72,12 +162,13 @@ a {
   isolation: isolate;
   width: 24.17vw;
   height: 28.54vw;
-  position: relative;
+  position: absolute;
   left: calc(50% - 24.17vw / 2);
   top: calc(50% - 28.54vw / 2 - 7.5vw);
   background: #ffffff;
   border-radius: 1.67vw;
   margin-top: 6.35vw;
+  z-index: 100;
 }
 
 .registration-close__icon {
