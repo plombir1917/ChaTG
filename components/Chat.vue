@@ -1,89 +1,63 @@
 <template>
   <section class="chat-background">
-    <span class="chat-title">Начните печатать ниже...</span>
+    <span class="chat-title" v-if="!messageSent">Начните печатать ниже...</span>
+
+    <div class="roof"></div>
+    <div class="messages">
+      <MessageSent :text="messageSent" v-if="messageSent" />
+      <MessageReceived :text="res" v-if="messageSent" />
+    </div>
+
     <div class="interface">
       <textarea
         type="text"
         class="interface-input"
         placeholder="Введите сообщение..."
+        v-model="text"
       />
-      <button class="btn">Отправить</button>
+      <button class="btn-chat" @click="onSubmit">Отправить</button>
     </div>
   </section>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      text: '',
+      messageSent: '',
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.messageSent = this.text
+    },
+  },
+}
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
+* {
+  font-family: 'Roboto';
+}
+
+.chat-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 94vh;
+  /* width: ; */
+}
 textarea {
   resize: none;
-}
-@media (max-width: 767px) {
-  .chat-title {
-    display: none;
-  }
-  .chat {
-    margin: 0 auto;
-  }
-}
-.interface-input {
-  box-sizing: border-box;
-
-  /* Auto layout */
-
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  gap: 8px;
-  padding: 10px;
-  width: 50vw;
-  height: 128px;
-  right: 20vw;
-  bottom: 2vh;
-
-  /* Primary/White */
-
-  background: #ffffff;
-  /* Primary/Stroke Gray */
-
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
-}
-.chat:focus {
-  border: 1px solid #3448af;
-  border-radius: 8px;
-}
-.chat-button {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 143% */
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  /* Blue/Blue */
-
-  color: #3448af;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 }
 .chat-title {
   margin-top: 48.15vh;
   width: 363px;
   height: 40px;
-  left: calc(50% - 363px / 2 + 159.5px);
-  top: calc(50% - 40px / 2);
+  margin-right: -25vw;
 
   /* 30-40, SemiBold */
 
@@ -98,33 +72,77 @@ textarea {
 
   color: #667085;
 }
-.chat-background {
-  display: flex;
-  flex-direction: column;
-  margin-left: 320px;
-  justify-content: space-between;
-  align-items: center;
-  height: 94vh;
+.interface {
+  position: relative;
 }
-.btn {
+.roof {
   position: absolute;
+  width: 77%;
+  height: 80px;
+  left: 320px;
+  top: 0px;
+
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.interface-input {
+  margin-left: 320px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 10px;
+  width: 50vw;
+  height: 128px;
+  right: 20vw;
+  bottom: 2vh;
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+}
+
+.btn-chat {
+  position: absolute;
+  bottom: 5%;
+  right: 1%;
+  border: none;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  width: 103px;
-  height: 40px;
-
-  /* Blue/Blue */
-
+  align-self: flex-start;
+  padding: 0;
+  color: #fff;
+  width: 5.36vw;
+  height: 2.08vw;
   background: #3448af;
-  border-radius: 100px;
-
-  /* Inside auto layout */
-  color: #ffffff;
+  border-radius: 5.21vw;
   flex: none;
-  order: 1;
+  align-self: stretch;
   flex-grow: 0;
+  font-weight: 500;
+  font-size: 0.73vw;
+  line-height: 1.04vw;
+  margin: 1.25vw auto 0 auto;
+}
+.btn-chat:hover {
+  background: #20349b;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .chat-title {
+    display: none;
+  }
+  .chat {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1000px) {
+  .interface-input {
+    margin: 0;
+  }
 }
 </style>

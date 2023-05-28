@@ -13,7 +13,7 @@
       <img src="../static/post.svg" alt="login-logo" class="login-logo" />
       <p class="login-name">Почта России GPT</p>
       <p class="login-hello">Добро пожаловать</p>
-      <div class="forms">
+      <form class="forms">
         <div class="forms-input">
           <span class="forms-input__label">Электронная почта</span>
           <input
@@ -36,19 +36,14 @@
             class="input"
           />
         </div>
-      </div>
+      </form>
 
-      <nuxt-link to="/login" @submit="onSubmit">
-        <button class="button btn" name="Войти">Войти</button>
-      </nuxt-link>
+      <button class="button btn" name="Войти" @click="onSubmit">Войти</button>
 
       <p class="login-auth">
         Нет аккаунта?
         <nuxt-link to="/signup"><a>Зарегистрироваться</a></nuxt-link>
       </p>
-      <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ form }}</pre>
-      </b-card>
     </section>
   </div>
 </template>
@@ -63,11 +58,12 @@ export default {
       },
     }
   },
+
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      console.log('FORM', this.form)
-      alert(JSON.stringify(this.form))
+      this.$store.dispatch('login')
+      this.$router.push('/logged')
     },
   },
   name: 'Modal',

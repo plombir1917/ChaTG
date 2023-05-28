@@ -1,7 +1,6 @@
 <template>
   <section>
     <SideBar />
-    <Chat />
     <main><Nuxt /></main>
   </section>
 </template>

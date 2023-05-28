@@ -19,10 +19,16 @@
           <nuxt-link to="/" class="footer-new-button">
             + Создать новый чат</nuxt-link
           >
-          <nuxt-link class="footer-link zero" to="/login">
+          <nuxt-link class="footer-link zero" to="/login" v-if="!hasToken">
             <img src="../static/user.svg" alt="" class="footer-img" />
-            <span class="zero footer-link-text">{{}}</span>
+            <span class="zero footer-link-text">Выполнить вход</span>
           </nuxt-link>
+          <div class="user" v-else>
+            <nuxt-link class="footer-link zero" to="/private">
+              <img src="../static/user.svg" alt="" class="footer-img" />
+              <span class="zero footer-link-text">Личный кабинет</span>
+            </nuxt-link>
+          </div>
         </footer>
       </div>
     </nav>
@@ -35,6 +41,12 @@ export default {
     return {
       chatName: 'Название чата',
     }
+  },
+
+  computed: {
+    hasToken() {
+      return this.$store.getters.hasToken
+    },
   },
 }
 </script>
@@ -82,19 +94,12 @@ export default {
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
   width: 320px;
 }
-.roof {
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  left: 320px;
-  top: 0px;
-
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-}
 
 @media (max-width: 991.98px) {
   .sidebar {
     width: 100%;
+    margin: 0 auto;
+    justify-content: center;
   }
 }
 .sidebar .active {
@@ -320,7 +325,7 @@ footer {
 }
 @media (max-width: 1000px) {
   footer {
-    margin: 0;
+    display: none;
   }
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <section></section>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'logged',
+}
 </script>
 
 <style scoped></style>

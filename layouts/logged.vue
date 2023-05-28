@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <section>
+    <SideBar />
+    <Chat />
+    <main><Nuxt /></main>
+  </section>
 </template>
 
 <script>

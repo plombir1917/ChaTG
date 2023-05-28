@@ -51,9 +51,6 @@
       <p class="registration-auth">
         Уже есть аккаунт? <nuxt-link to="/login"><a>Войдите</a></nuxt-link>
       </p>
-      <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ form }}</pre>
-      </b-card>
     </section>
   </div>
 </template>
@@ -72,7 +69,7 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      this.$router.push('/login')
     },
   },
   name: 'Modal',
